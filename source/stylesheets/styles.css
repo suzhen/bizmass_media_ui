@@ -4,13 +4,13 @@ body {
 }
 
 .slider {
-    width: 800px;
-    height: 400px;
+    width: 750px;
+    height: 429px;
     overflow: hidden;
     position: relative;
     background: #e6e6e6;
-    border: 20px solid #FFF;
-    margin-top: 20px;
+    border: 1px solid #FFF;
+    margin-top: 1px;
 }
 
 .slide {

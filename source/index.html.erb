@@ -20,59 +20,73 @@ layout: layout
 
 
 <!-- Slider Template -->
-
-  <div class="container slider" ng-show="show" ng-controller="PhotoController">
-    <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
-         ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
-         ng-hide="!isCurrentSlideIndex($index)" ng-src="{{host+slide.image}}">
-    <a class="arrow prev" href="" ng-click="nextSlide()"></a>
-    <a class="arrow next" href="" ng-click="prevSlide()"></a>
-    <nav class="nav">
-        <div class="wrapper">
-            <ul class="dots">
-                <li class="dot" ng-repeat="slide in slides">
-                    <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
-                       ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
-            </ul>
-        </div>
-    </nav>
+ <div id="sliderModal" class="modal hide fade sliderModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>
-
+  <div class="modal-body">
+    <div id="sliderDiv" >
+      <div class="container slider" ng-show="show" ng-controller="PhotoController">
+        <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage"
+             ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+             ng-hide="!isCurrentSlideIndex($index)" ng-src="{{host+slide.image}}">
+        <a class="arrow prev" href="" ng-click="nextSlide()"></a>
+        <a class="arrow next" href="" ng-click="prevSlide()"></a>
+        <nav class="nav">
+            <div class="wrapper">
+                <ul class="dots">
+                    <li class="dot" ng-repeat="slide in slides">
+                        <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
+                           ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
+                </ul>
+            </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Video Template -->
-
-  <div ng-controller="VideoController" ng-show="show" style="border:1px solid red">
-    <videogular
-      vg-player-ready="onPlayerReady" vg-complete="onCompleteVideo" vg-update-time="onUpdateTime" vg-update-size="onUpdateSize" vg-update-volume="onUpdateVolume" vg-update-state="onUpdateState"
-      vg-width="config.width" vg-height="config.height" vg-theme="config.theme.url" vg-autoplay="config.autoPlay" vg-stretch="config.stretch.value" vg-responsive="true">
-      <video preload='metadata'>
-        <source ng-repeat="source in config.sources" ng-src="{{source.src}}" type="{{source.type}}">
-      </video>
-      <vg-poster-image vg-url='config.plugins.poster.url' vg-stretch="config.stretch.value"></vg-poster-image>
-      <vg-buffering></vg-buffering>
-      <vg-overlay-play vg-play-icon="config.theme.playIcon"></vg-overlay-play>
-      <vg-controls vg-autohide="config.autoHide" vg-autohide-time="config.autoHideTime" style="height: 50px;">
-        <vg-play-pause-button vg-play-icon="config.theme.playIcon" vg-pause-icon="config.theme.pauseIcon"></vg-play-pause-button>
-        <vg-timeDisplay>{{ currentTime }}</vg-timeDisplay>
-        <vg-scrubBar>
-          <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
-        </vg-scrubBar>
-        <vg-timeDisplay>{{ totalTime }}</vg-timeDisplay>
-        <vg-volume>
-          <vg-mutebutton
-            vg-volume-level-3-icon="config.theme.volumeLevel3Icon"
-            vg-volume-level-2-icon="config.theme.volumeLevel2Icon"
-            vg-volume-level-1-icon="config.theme.volumeLevel1Icon"
-            vg-volume-level-0-icon="config.theme.volumeLevel0Icon"
-            vg-mute-icon="config.theme.muteIcon">
-          </vg-mutebutton>
-          <vg-volumebar></vg-volumebar>
-        </vg-volume>
-        <vg-fullscreenButton vg-enter-full-screen-icon="config.theme.enterFullScreenIcon" vg-exit-full-screen-icon="config.theme.exitFullScreenIcon"></vg-fullscreenButton>
-      </vg-controls>
-    </videogular>
+  <div id="videoModal" class="modal hide fade videoModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>
+  <div class="modal-body">
+     <div ng-controller="VideoController" ng-show="show">
+        <videogular
+          vg-player-ready="onPlayerReady" vg-complete="onCompleteVideo" vg-update-time="onUpdateTime" vg-update-size="onUpdateSize" vg-update-volume="onUpdateVolume" vg-update-state="onUpdateState"
+          vg-width="config.width" vg-height="config.height" vg-theme="config.theme.url" vg-autoplay="config.autoPlay" vg-stretch="config.stretch.value" vg-responsive="true">
+          <video preload='metadata'>
+            <source ng-repeat="source in config.sources" ng-src="{{source.src}}" type="{{source.type}}">
+          </video>
+          <vg-poster-image vg-url='config.plugins.poster.url' vg-stretch="config.stretch.value"></vg-poster-image>
+          <vg-buffering></vg-buffering>
+          <vg-overlay-play vg-play-icon="config.theme.playIcon"></vg-overlay-play>
+          <vg-controls vg-autohide="config.autoHide" vg-autohide-time="config.autoHideTime" style="height: 50px;">
+            <vg-play-pause-button vg-play-icon="config.theme.playIcon" vg-pause-icon="config.theme.pauseIcon"></vg-play-pause-button>
+            <vg-timeDisplay>{{ currentTime }}</vg-timeDisplay>
+            <vg-scrubBar>
+              <vg-scrubbarcurrenttime></vg-scrubbarcurrenttime>
+            </vg-scrubBar>
+            <vg-timeDisplay>{{ totalTime }}</vg-timeDisplay>
+            <vg-volume>
+              <vg-mutebutton
+                vg-volume-level-3-icon="config.theme.volumeLevel3Icon"
+                vg-volume-level-2-icon="config.theme.volumeLevel2Icon"
+                vg-volume-level-1-icon="config.theme.volumeLevel1Icon"
+                vg-volume-level-0-icon="config.theme.volumeLevel0Icon"
+                vg-mute-icon="config.theme.muteIcon">
+              </vg-mutebutton>
+              <vg-volumebar></vg-volumebar>
+            </vg-volume>
+            <vg-fullscreenButton vg-enter-full-screen-icon="config.theme.enterFullScreenIcon" vg-exit-full-screen-icon="config.theme.exitFullScreenIcon"></vg-fullscreenButton>
+          </vg-controls>
+        </videogular>
+    </div>
+  </div>
+ </div>
 
+ 
 
 <!--FOOT-->
 <div class="footer">

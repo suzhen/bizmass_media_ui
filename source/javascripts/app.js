@@ -50,6 +50,7 @@ function albumController($scope,$http,$routeParams,$rootScope){
       if(albumEffect=="photo"){
         $rootScope.$broadcast('showDetailEvent', albumId);
         $rootScope.$broadcast('hideVideoEvent');
+
       }else{
         $rootScope.$broadcast('showVideoEvent', albumId);
         $rootScope.$broadcast('hideDetailEvent');
@@ -70,6 +71,7 @@ angular.module('nufangBJ').controller('PhotoController', function ($scope,$http,
               success(function(data, status, headers, config) {
                    $scope.slides = data["data"];
                     $scope.showSlide = true;
+                     $('#sliderModal').modal('show')
               }).
               error(function(data, status, headers, config) {
                 alert("服务无法链接")
@@ -228,10 +230,12 @@ angular.module('nufangBJ').controller('PhotoController', function ($scope,$http,
                    sources = []
                    source = {}
                    source["src"] = $sce.trustAsResourceUrl(HOST_NAME+data["data"][0]["video"])
+                   //source["src"] = "http://0.0.0.0:4567/images/VIDEO0035.mp4"
                    source["type"] = "video/mp4"
                    sources.push(source)
                    $scope.config["sources"] = sources
                    $scope.config["plugins"] = {"poster":{"url":HOST_NAME+data["data"][0]["poster"]}}
+                   $('#videoModal').modal('show')
               }).
               error(function(data, status, headers, config) {
                 alert("服务无法链接")
@@ -244,4 +248,5 @@ angular.module('nufangBJ').controller('PhotoController', function ($scope,$http,
 
   }
 );
+
 

@@ -9,8 +9,11 @@
     <!-- Use title if it's in the page YAML frontmatter -->
     <title><%= current_page.data.title || "怒放北京" %></title>
     
-    <%= stylesheet_link_tag "all","bootstrap","styles" %>
+    <%= stylesheet_link_tag "bootstrap","styles","all" %>
     <%= javascript_include_tag  "jquery/jquery-2.0.3.min.js","jquery/jquery-migrate-1.2.1.min.js" %>
+    <%= javascript_include_tag  "jquery.easyModal.js" %>
+     <%= javascript_include_tag  "bootstrap.min.js" %>
+    
     <%= javascript_include_tag  "angular/angular.js","angular/angular-route.min.js","angular/angular-animate.min.js","angular/angular-touch.min.js","angular/angular-sanitize.min" %>
     <!--FOR SLIDER-->
     <%= javascript_include_tag  "TweenMax.min.js" %>
