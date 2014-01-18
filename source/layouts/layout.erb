@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title><%= current_page.data.title || "怒放北京" %></title>
+    
+    <%= stylesheet_link_tag "all","bootstrap","styles" %>
+    <%= javascript_include_tag  "jquery/jquery-2.0.3.min.js","jquery/jquery-migrate-1.2.1.min.js" %>
+    <%= javascript_include_tag  "angular/angular.js","angular/angular-route.min.js","angular/angular-animate.min.js","angular/angular-touch.min.js","angular/angular-sanitize.min" %>
+    <!--FOR SLIDER-->
+    <%= javascript_include_tag  "TweenMax.min.js" %>
+    <!--FOR VIDEO-->
+    <%= javascript_include_tag "videogular/videogular.js","videogular/controls.js","videogular/overlay-play.js","videogular/buffering.js","videogular/poster.js"%>
+
+   <%= javascript_include_tag "app.js" %>
+
+
+   
+  </head>
+  
+  <body ng-app="nufangBJ">
+    <%= yield %>
+  </body>
+</html>
